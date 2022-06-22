@@ -1,0 +1,3 @@
+[virtualenvs]
+in-project = true
+path = "D:\\workspace\\PycharmProjects\\vtk_balance\\venv"
