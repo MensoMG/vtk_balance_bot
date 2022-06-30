@@ -1,0 +1,5 @@
+beautifulsoup4==4.11.1
+aiohttp==3.8.1
+bs4==0.0.1
+aiogram==2.21
+html5lib==1.1
