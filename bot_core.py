@@ -1,14 +1,19 @@
 import logging
 import aiohttp
-import asyncio
 import re
 import bs4
 
 from aiogram import Bot, Dispatcher, executor
 from aiogram.types import ContentType, ParseMode, Message
 from bs4 import BeautifulSoup as bs
+from os import getenv
+from sys import exit
 
-bot = Bot(token='5469238337:AAFkTlOZMaWHLXkZGildNOlDqolPqwwB9Uw')
+bot_token = getenv('BOT_TOKEN')
+if not bot_token:
+    exit('Error: no token provided')
+
+bot = Bot(token=bot_token)
 dp = Dispatcher(bot=bot)
 
 logging.basicConfig(level=logging.INFO)
@@ -30,7 +35,7 @@ async def post_account(request):
 
 
 @dp.message_handler(content_types=ContentType.TEXT)
-async def cmd_test(message: Message):
+async def balance_handler(message: Message):
     alert_info = 'Для проверки баланса введите 10\-значный лицевой счет в формате `1123456789` \(без букв и пробелов\)'
 
     if message.text.startswith('11') and len(message.text) == 10:
