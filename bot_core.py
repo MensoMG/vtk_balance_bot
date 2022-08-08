@@ -40,16 +40,16 @@ async def post_account(request):
             await session.close()
     return response
 
-
-@dp.message_handler(commands="start")
-async def save_user(message: types.Message):
-    utils.init_user(message.from_user.id, message.from_user.first_name)
+# temporary change to save_user() bot request handler
+#@dp.message_handler(commands="start")
+#async def save_user(message: types.Message):
+#    utils.init_user(message.from_user.id, message.from_user.first_name)
 
 
 @dp.message_handler(content_types=types.ContentType.TEXT)
 async def balance_handler(message: types.Message):
     alert_info = 'Для проверки баланса введите 10\-значный лицевой счет в формате `1123456789` \(без букв и пробелов\)'
-
+    utils.init_user(message.from_user.id, message.from_user.first_name)
     if message.text.startswith('11') and len(message.text) == 10:
         response_info = await post_account(message.text)
         if response_info is None:
